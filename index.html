@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Flashcard App</title>
+  <link rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+    crossorigin="anonymous">
+  <!-- <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous"> -->
+  <script src="https://kit.fontawesome.com/33aeae118c.js"
+    crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  <style>
+    .fas:hover {
+      color: red;
+    }
+
+    .card-container {
+      transition: transform ease-in-out 1s;
+      transform-style: preserve-3d;
+      box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
+      /* 0px 3px 15px rgba(0,0,0,0.2); */
+    }
+
+    .card {
+      /* background:url(
+        data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBoZWlnaHQ9IjYwMCIgdmlld0JveD0iMCAwIDUgMyI+DQo8cGF0aCBkPSJtMCwwaDV2M2gtNXoiLz4NCjxwYXRoIGZpbGw9IiNkMDAiIGQ9Im0wLDFoNXYyaC01eiIvPg0KPHBhdGggZmlsbD0iI2ZmY2UwMCIgZD0ibTAsMmg1djFoLTV6Ii8+DQo8L3N2Zz4NCg==
+      );
+      opacity: .1; */
+    }
+
+    .flip {
+      transform: rotateY(180deg);
+      /* animation-fill-mode: forwards; */
+    }
+
+    .card-title {
+      text-align: center;
+    }
+
+    .card-img-top {
+      transform: scale(1, .75);
+    }
+  </style>
+
+  <!-- Don't use this in production: -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body style="margin: 0; padding: 0;">
+  <div id="root"></div>
+  <script type="text/babel">
+    const TEST_DATA = `question1|answer1|example1
+question2|answer2|example21|example22
+question3|answer3`
+
+    const germanFlag = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBoZWlnaHQ9IjYwMCIgdmlld0JveD0iMCAwIDUgMyI+DQo8cGF0aCBkPSJtMCwwaDV2M2gtNXoiLz4NCjxwYXRoIGZpbGw9IiNkMDAiIGQ9Im0wLDFoNXYyaC01eiIvPg0KPHBhdGggZmlsbD0iI2ZmY2UwMCIgZD0ibTAsMmg1djFoLTV6Ii8+DQo8L3N2Zz4NCg=='
+    class Flashcard extends React.Component {
+      constructor({ flashcardData, index, total, side, onTurn, onTurnEnd }) {
+        super()
+        const [question, answer, ...examples] = flashcardData
+        this.state = {
+          question,
+          answer,
+          examples,
+          side,
+          showExample: false,
+          turning: false,
+          index,
+          total
+        }
+      }
+      handleToggleExample(e) {
+        this.setState({
+          showExample: !this.state.showExample
+        })
+        e.stopPropagation()
+      }
+      render() {
+        const { question, answer, examples } = this.state
+        const cardStyle = {
+          position: 'absolute',
+          top: 0,
+          backfaceVisibility: 'hidden',
+          height: '100%',
+          width: '100%',
+          transformStyle: 'preserve-3d',
+          fontWeight: 'bold'
+        }
+        return (
+          <div
+            style={{
+              position: 'relative',
+              height: '50%',
+              top: '25vh',
+            }}
+            onTransitionEnd={this.props.onTurnEnd.bind(this)}
+            className={'card-container ' + (this.props.side > 0 ? '' : 'flip')}>
+            <div
+              style={cardStyle}
+              onClick={this.props.onTurn.bind(this)}>
+              <div style={{ height: '100%', display: 'flex', flexDirection: 'column', backgroundColor: 'bisque' }}>
+                <div style={{ flexGrow: 1, textAlign: 'center', fontWeight: 'bold', height: 0 }}>
+                  {this.props.index + 1} / {this.props.total}
+                </div>
+                <div style={{
+                  textAlign: 'center',
+                  fontSize: '2em'
+                }}>
+                  {question}
+                </div>
+                <div style={{ flexGrow: 1 }}></div>
+              </div>
+            </div>
+            <div
+              style={{
+                ...cardStyle,
+                transform: 'rotateY(180deg)',
+                display: 'flex',
+                flexDirection: 'column',
+                textAlign: 'center',
+                backgroundColor: 'khaki'
+              }}
+              onClick={this.props.onTurn.bind(this)}>
+              <div style={{
+                flexGrow: 1,
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: examples.length ? 'flex-end' : 'center'
+              }}>
+                <div style={{
+                  fontSize: '2em'
+                }}>
+                  {answer}
+                </div>
+              </div>
+              {
+                examples.length ?
+                  <div style={{
+                    flexGrow: 1,
+                    fontSize: '1em',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'flex-start',
+                    alignItems: 'center'
+                  }}>
+                    <button
+                      className="btn btn-link btn-sm"
+                      style={{ width: 200, margin: 20, padding: 0 }}
+                      onClick={this.handleToggleExample.bind(this)}>
+                      {this.state.showExample ? 'Hide' : 'Show'} Examples
+                    </button>
+                    {
+                      examples.map((example, index) => <div style={{
+                        visibility: this.state.showExample ? 'visible' : 'hidden'
+                      }} key={index} className="font-italic text-muted">{example}</div>)
+                    }
+                  </div> :
+                  null
+              }
+            </div>
+          </div>
+
+        )
+      }
+    }
+
+    class FlashcardManager extends React.Component {
+      constructor({ fileData }) {
+        super()
+        this.state = {
+          flashcards: this.initializeFlashcards(fileData),
+          index: 0,
+          side: 1
+        }
+        this.fcm = React.createRef();
+      }
+      initializeFlashcards(fileData) {
+        const lines = fileData
+          .split('\n')
+          .map(line => line.trim())
+        const flashcards = lines
+          .filter(line => {
+            const [question, answer, example] = line.split('|')
+            return question
+          })
+          .map((line, index) => {
+            const [question, answer, ...examples] = line.split('|')
+            return [
+              question,
+              answer,
+              ...examples
+            ]
+          })
+          .map((flashcardData, index) => ({
+            flashcardData, key: index
+          })
+          )
+        return flashcards
+      }
+      handleTurn() {
+        this.setState({
+          side: this.state.side * -1,
+          turning: true
+        })
+      }
+      handleTurnEnd() {
+        this.setState({
+          turning: false
+        })
+      }
+      handlePreviousClick() {
+        const previousIndex = this.state.index - 1
+        if (previousIndex >= 0) {
+          this.setState({
+            index: previousIndex,
+            side: 1
+          })
+        }
+      }
+      handleNextClick() {
+        const nextIndex = this.state.index + 1
+        const numberOfFlashcards = this.state.flashcards.length
+        if (nextIndex < numberOfFlashcards) {
+
+          this.setState({
+            index: nextIndex,
+            side: 1
+          })
+        }
+      }
+      handleFirstClick() {
+        this.setState({
+          index: 0,
+          side: 1
+        })
+      }
+      handleLastClick() {
+        this.setState({
+          index: this.state.flashcards.length - 1,
+          side: 1
+        })
+      }
+      handleKeyDown({ keyCode }) {
+        console.log(keyCode);
+        switch (keyCode) {
+          case 39:
+            this.handleNextClick()
+            break;
+          case 37:
+            this.handlePreviousClick()
+            break;
+          case 32:
+            this.setState({
+              side: this.state.side * -1
+            })
+          default:
+            break;
+        }
+      }
+      componentDidMount() {
+        this.fcm.current.focus()
+      }
+      render() {
+        const currentFlashCard = this.state.flashcards[this.state.index]
+        return (
+          <div className="row align-items-center" style={{ height: '100vh' }}
+            onKeyDown={this.handleKeyDown.bind(this)}
+            ref={this.fcm}
+            tabIndex="0">
+            <div className="col" onClick={this.handleFirstClick.bind(this)}>
+              <Icon className="angle-double-left" />
+            </div>
+            <div className="col" onClick={this.handlePreviousClick.bind(this)}>
+              <Icon className="caret-square-left" />
+            </div>
+            <div className="col-8" style={{ height: '100vh' }}>
+              <Flashcard total={this.state.flashcards.length} index={this.state.index} {...currentFlashCard} side={this.state.side} onTurn={this.handleTurn.bind(this)} onTurnEnd={this.handleTurnEnd.bind(this)} />
+            </div>
+            <div className="col" onClick={this.handleNextClick.bind(this)}>
+              <Icon className="caret-square-right" />
+            </div>
+            <div className="col" onClick={this.handleLastClick.bind(this)}>
+              <Icon className="angle-double-right" />
+            </div>
+          </div>
+        )
+      }
+    }
+    function Icon({ className, onClick }) {
+      return <div onClick={onClick} className={'icon fas fa-' + className} style={{ fontSize: 40 }} />
+    }
+    class FileManager extends React.Component {
+      constructor({ }) {
+        super()
+        this.fileReader = new FileReader()
+        this.fileReader.onloadend = () => this.setState({
+          fileData: this.fileReader.result
+        })
+        this.state = {
+          fileData: null,
+          // fileData: TEST_DATA
+        }
+      }
+      onFileChange(event) {
+        this.fileReader.readAsText(event.target.files[0])
+      }
+      render() {
+        return (
+          <div className="container-fluid">
+            <div className="row">
+              <div className="col-3"></div>
+              {
+                !this.state.fileData ?
+                  <div className="col-6" style={{display: 'flex', flexDirection: 'column', height: '100vh' }}>
+                    <div style={{ flexGrow: 1 }}></div>
+                    <div style={{ flexGrow: 1 }}>
+                      <p>Select Input File</p>
+                      <input
+                        type="file"
+                        id="file"
+                        onChange={this.onFileChange.bind(this)}
+                      />
+                      <br/>
+                      <br/>
+                      <div>FORMAT</div>
+                      <br/>
+                      <code>
+                        Question1|Answer1|Example11|example12|...
+                        <br/>
+                        Question2|Answer2|Example21|example22|...
+                      </code>
+                    </div>
+                    <div style={{ flexGrow: 1 }}></div>
+                  </div>
+                  :
+                  null
+              }
+
+              {this.state.fileData ?
+                <div className="col-6">
+                  <FlashcardManager
+                    fileData={this.state.fileData}
+                  />
+                </div>
+                :
+                null
+              }
+              <div className="col-3">
+                {
+                  this.state.fileData? <Icon onClick={() => {if(window.confirm('Do you want to remove the flashcard content?')) this.setState({fileData: null})}} className="times"/>:null
+                }
+              </div>
+            </div>
+          </div>
+        )
+      }
+    }
+    ReactDOM.render(
+      <FileManager />,
+      document.getElementById('root')
+    );
+
+
+  </script>
+  <!--
+      Note: this page is a great way to try React but it's not suitable for production.
+      It slowly compiles JSX with Babel in the browser and uses a large development build of React.
+
+      Read this section for a production-ready setup with JSX:
+      https://reactjs.org/docs/add-react-to-a-website.html#add-jsx-to-a-project
+
+      In a larger project, you can use an integrated toolchain that includes JSX instead:
+      https://reactjs.org/docs/create-a-new-react-app.html
+
+      You can also use React without JSX, in which case you can remove Babel:
+      https://reactjs.org/docs/react-without-jsx.html
+    -->
+</body>
+
+</html>
