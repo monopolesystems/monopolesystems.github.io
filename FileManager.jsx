@@ -18,8 +18,8 @@ export class FileManager extends React.Component {
       fileData: this.fileReader.result
     })
     this.state = {
-      // fileData: null,
-      fileData: TEST_DATA,
+      fileData: null,
+      // fileData: TEST_DATA,
     }
   }
   onFileChange(event) {
