@@ -68,10 +68,10 @@ export class FileManager extends React.Component {
           }
           <div className="col-xl-3 col-lg-2">
             {
-              this.state.fileData ? 
-              <FontAwesomeIcon icon={faTimes} />
-              
-              : null
+              this.state.fileData ?
+                <FontAwesomeIcon icon={faTimes} onClick={() => { if (confirm('Do you want to remove the loaded flashcards?')) this.setState({ fileData: null }) }} />
+
+                : null
             }
           </div>
         </div>
