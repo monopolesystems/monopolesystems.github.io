@@ -2,10 +2,10 @@
   "name": "monopolesystems.github.io",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "start": "parcel flashcard.html",
-    "publish": "parcel build flashcard.html"
+    "build": "parcel build --public-url ./dist/ flashcard.html"
   },
   "repository": {
     "type": "git",
