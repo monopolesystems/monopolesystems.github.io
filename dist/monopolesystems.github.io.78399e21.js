@@ -28507,7 +28507,7 @@ function Icon(_ref) {
     onClick: onClick,
     className: 'icon fas fa-' + className,
     style: {
-      fontSize: 40
+      fontSize: 30
     }
   });
 }
@@ -39660,8 +39660,8 @@ var FileManager = /*#__PURE__*/function (_React$Component) {
         fileData: this.state.fileData
       })) : null, /*#__PURE__*/_react.default.createElement("div", {
         className: "col-xl-3 col-lg-2"
-      }, this.state.fileData ? /*#__PURE__*/_react.default.createElement(_reactFontawesome.FontAwesomeIcon, {
-        icon: _freeSolidSvgIcons.faTimes,
+      }, this.state.fileData ? /*#__PURE__*/_react.default.createElement(_lib.Icon, {
+        className: "times",
         onClick: function onClick() {
           if (confirm('Do you want to remove the loaded flashcards?')) _this2.setState({
             fileData: null
@@ -39715,7 +39715,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "36201" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "42329" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
