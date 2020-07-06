@@ -3,6 +3,7 @@ import { FlashcardManager } from './FlashcardManager';
 import { Icon } from './lib';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import data from './data';
 
 const TEST_DATA = `question1|answer1|example1
 question2|answer2|example21|example22
@@ -21,6 +22,7 @@ export class FileManager extends React.Component {
       fileData: null,
       // fileData: TEST_DATA,
     }
+    this.data = data || {}
   }
   onFileChange(event) {
     this.fileReader.readAsText(event.target.files[0])
@@ -43,15 +45,20 @@ export class FileManager extends React.Component {
                   />
                   <br />
                   <br />
-                  <div>FORMAT</div>
-                  <br />
-                  <code>
-                    Question1|Answer1|Example11|example12|...
-                        <br />
-                        Question2|Answer2|Example21|example22|...
-                      </code>
+                  <div style={{ flexGrow: 1, alignItems: 'flex-start' }}>
+                    {
+                      Object.keys(this.data)
+                        .map(x =>
+                          <div>
+                            <button
+                              key={x}
+                              onClick={_ => this.setState({ fileData: this.data[x] })}
+                              className="btn-sm btn btn-link">Load {x}</button>
+                          </div>
+                        )
+                    }
+                  </div>
                 </div>
-                <div style={{ flexGrow: 1 }}></div>
               </div>
               :
               null
