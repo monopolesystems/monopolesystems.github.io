@@ -28,7 +28,7 @@ Beitragen|zu+D
 Sich bewerben|um+A, bei+D
 Sich beziehen |auf+A
 Bitten|um+A
-Bringeen|zu+D
+Bringen|zu+D
 Denken|an+D
 Diskutieren|über+A, mit+D
 Einladen|zu+D
