@@ -1,6 +1,7 @@
 import React from "react";
 import { Flashcard } from './Flashcard';
 import { Icon } from './lib';
+import { Swipeable } from 'react-swipeable';
 
 export class FlashcardManager extends React.Component {
   constructor({ fileData }) {
@@ -30,7 +31,7 @@ export class FlashcardManager extends React.Component {
         ]
       })
       .map((flashcardData, index) => ({
-        flashcardData, key: index
+        flashcardData, key: index, answered: false
       })
       )
     return flashcards
@@ -95,31 +96,63 @@ export class FlashcardManager extends React.Component {
         break;
     }
   }
+  handleAnswer(correct) {
+    const flashcards = this.state.flashcards
+    flashcards[this.state.index].correct = correct
+    flashcards[this.state.index].answered = true
+    this.setState({ flashcards })
+  }
   componentDidMount() {
     this.fcm.current.focus()
-  }
+  } 
   render() {
+    console.log(this.state);
     const currentFlashCard = this.state.flashcards[this.state.index]
     return (
-      <div className="row align-items-center" style={{ height: '100vh' }}
+      <div className="row align-items-center" style={{ height: '90vh', margin: 0 }}
         onKeyDown={this.handleKeyDown.bind(this)}
         ref={this.fcm}
         tabIndex="0">
-        <div className="col" onClick={this.handleFirstClick.bind(this)}>
-          <Icon className="angle-double-left" />
-        </div>
-        <div className="col" onClick={this.handlePreviousClick.bind(this)}>
-          <Icon className="caret-square-left" />
-        </div>
-        <div className="col-8" style={{ height: '100vh' }}>
-          <Flashcard total={this.state.flashcards.length} index={this.state.index} {...currentFlashCard} side={this.state.side} onTurn={this.handleTurn.bind(this)} onTurnEnd={this.handleTurnEnd.bind(this)} />
-        </div>
-        <div className="col" onClick={this.handleNextClick.bind(this)}>
-          <Icon className="caret-square-right" />
-        </div>
-        <div className="col" onClick={this.handleLastClick.bind(this)}>
-          <Icon className="angle-double-right" />
-        </div>
+        <nav class="navbar nav fixed-bottom navbar-light bg-light justify-content-left">
+          <li class="nav-item" onClick={this.handleFirstClick.bind(this)}>
+            <Icon className="angle-double-left" />
+          </li>
+          <li class="nav-item" onClick={this.handlePreviousClick.bind(this)}>
+            <Icon className="caret-square-left" />
+          </li>
+          <div className="navbar-text font-weight-bold">
+            <span style={{ marginLeft: 5, marginRight: 5 }} className="text-muted">{this.state.flashcards.filter(({ answered }) => !answered).length}</span>
+            /<span style={{ marginLeft: 5, marginRight: 5 }} className="text-primary">{this.state.flashcards.length}</span>
+          </div>
+          <div className="navbar-brand">
+            <span style={{ marginLeft: 5, marginRight: 5 }} className="text-success">
+              {this.state.flashcards.filter(({ correct }) => correct === true).length} <span className="icon fas fa-thumbs-up" />
+            </span>
+            <span style={{ marginLeft: 5, marginRight: 5 }} className="text-danger">
+              {this.state.flashcards.filter(({ correct }) => correct === false).length} <span className="icon fas fa-thumbs-down" />
+            </span>
+          </div>
+          <li class="nav-item" onClick={this.handleNextClick.bind(this)}>
+            <Icon className="caret-square-right" />
+          </li>
+          <li class="nav-item" onClick={this.handleLastClick.bind(this)}>
+            <Icon className="angle-double-right" />
+          </li>
+        </nav>
+        <Swipeable
+          onSwipedRight={this.handlePreviousClick.bind(this)}
+          onSwipedLeft={this.handleNextClick.bind(this)}
+          className="col-md-12"
+          style={{ height: '75vh' }}>
+          <Flashcard
+            total={this.state.flashcards.length}
+            index={this.state.index}
+            {...currentFlashCard}
+            side={this.state.side}
+            onTurn={this.handleTurn.bind(this)}
+            onTurnEnd={this.handleTurnEnd.bind(this)}
+            onAnswer={correct => this.handleAnswer(correct)} />
+        </Swipeable>
       </div>
     )
   }

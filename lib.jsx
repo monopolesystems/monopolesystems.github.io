@@ -1,5 +1,5 @@
 import React from "react";
 
 export function Icon({ className, onClick }) {
-  return <div onClick={onClick} className={'icon fas fa-' + className} style={{ fontSize: 30 }} />
+  return <span onClick={onClick} className={'icon fas fa-' + className} style={{ fontSize: 30 }} />
 }
