@@ -201,5 +201,80 @@ verstehen|haben+verstanden
 vorbereiten|haben+vorbereitet
 werden|sein+ geworden
 wissen|haben+gewusst
-wohnen|haben+gewohnt`
+wohnen|haben+gewohnt`,
+"Nomen-Verben Kombination": `Sich in Acht|nehmen # vor
+Abschied |nehmen # von
+die Absicht|haben # zu
+eine Änderung|vornehmen
+Anerkennung finden|finden
+ein Angebot|machen
+jmdm Angst|machen
+in Anspruch|nehmen
+Anteil|nehmen
+einen Antrag|stellen # auf
+zur Anwendung|kommen
+zu der Auffassung|gelangen
+in Aufregung|versetzen
+einen Auftrag|geben, erteilen
+zum Ausdruck|bringen
+zur Auswahl |stehen
+Beachtung|finden
+einen Beitrag |leisten
+einen Beruf |ausüben
+Bescheid|geben, sagen
+Bescheid|wissen # über
+eine Bestellung |aufgeben
+in Betracht|kommen
+in Betracht |ziehen
+Bezug |nehmen # auf
+unter Beweis |stellen
+zur Diskussion|stehen
+unter Druck|stehen
+Eindruck|machen  # auf
+Einfluss|nehmen  # auf
+zu Ende|bringen
+einen Entschluss|fassen
+eine Entscheidung |treffen
+in Erfüllung |gehen
+die Erlaubnis |erteilen  # zu
+einen Fehler|begehen
+die Flucht |ergreifen # vor
+zur Folge|haben
+eine Forderung |stellen
+in Frage|kommen
+außer Frage |stehen
+eine Frage |stellen
+in Frage|stellen
+sich Gedanken|machen # über
+in Gefahr |sein
+ein Gespräch|führen # mit, über
+einen Grund |angeben # für
+Interesse|wecken # für
+in Kauf|nehmen
+zur Kenntnis |nehmen
+in Kontakt |treten # mit
+die Kosten |tragen # für
+Kritik |üben
+in der Lage|sein # zu
+auf dem Laufenden |sein # über
+auf den Markt|bringen
+sich Mühe |geben # bei, mit
+eine Rolle|spielen
+Rücksicht|nehmen # auf
+Ruhe|bewahren
+Schluss|machen # mit
+in Schutz|nehmen # vor
+sich Sorgen |machen # um
+etw. Aufs Spiel|setzen
+zur Sprache|bringen
+auf dem Standpunkt|stehen
+Stellung|nehmen # zu
+eine Verabredung|treffen # zu, mit
+Verantwortung|tragen # für
+jmdn. in Verlegenheit|bringen
+zur Verfügung |stehen # für
+Verständnis |aufbringen # für
+aus dem Weg|gehen
+Zweifel|haben # an
+außer Zweifel|stehen`
 }

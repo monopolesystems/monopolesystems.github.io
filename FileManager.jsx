@@ -27,7 +27,7 @@ export class FileManager extends React.Component {
   render() {
     return (
       <div>
-        <Navbar color="dark" dark fixed expand>
+        <Navbar color="dark" dark fixed expand style={{height: '5vh'}}>
           <NavbarBrand>Flashcards</NavbarBrand>
           <NavbarToggler />
           <Nav className="" mr-auto navbar>
@@ -35,7 +35,7 @@ export class FileManager extends React.Component {
               <DropdownToggle nav caret>
                 Load
               </DropdownToggle>
-              <DropdownMenu right>
+              <DropdownMenu>
                 {Object.keys(this.data).map((name) => {
                   return (
                     <DropdownItem

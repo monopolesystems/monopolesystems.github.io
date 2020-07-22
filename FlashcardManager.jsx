@@ -113,7 +113,7 @@ export class FlashcardManager extends React.Component {
         onKeyDown={this.handleKeyDown.bind(this)}
         ref={this.fcm}
         tabIndex="0">
-        <nav class="navbar nav fixed-bottom navbar-light bg-light justify-content-left">
+        <nav class="navbar nav fixed-bottom navbar-light bg-light justify-content-left" style={{height: '5vh'}}>
           <li class="nav-item" onClick={this.handleFirstClick.bind(this)}>
             <Icon className="angle-double-left" />
           </li>
