@@ -114,7 +114,7 @@ export class Flashcard extends React.Component {
               // justifyContent: 'space-around',
               margin: 30
             }}>
-              <button style={{ padding: 50, marginRight: 10 }} onClick={e => { this.props.onAnswer(false); e.preventDefault() }} className="btn btn-lg btn-danger"><Icon className="thumbs-down" /></button>
+              <button style={{ padding: 50, marginRight: 10 }} onClick={e => { this.props.onAnswer(false); e.preventDefault(); e.stopPropagation() }} className="btn btn-lg btn-danger"><Icon className="thumbs-down" /></button>
               <button style={{ padding: 50, marginLeft: 10 }} onClick={e => { this.props.onAnswer(true); e.preventDefault(); e.stopPropagation() }} className="btn btn-lg btn-success"><Icon className="thumbs-up" /></button>
             </div>
           </div>
