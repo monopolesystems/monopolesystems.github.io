@@ -27,25 +27,28 @@ export class FileManager extends React.Component {
   render() {
     return (
       <div>
-        <Navbar color="dark" dark fixed expand style={{height: '5vh'}}>
-          <NavbarBrand>Flashcards</NavbarBrand>
+        <Navbar color="dark" dark fixed expand style={{ height: '5vh', fontSize: '3em' }}>
+          <NavbarBrand style={{ fontSize: '1em' }}>Flashcards</NavbarBrand>
           <NavbarToggler />
-          <Nav className="" mr-auto navbar>
+          <Nav className="navbar-nav ml-auto" navbar>
             <UncontrolledDropdown nav inNavbar>
               <DropdownToggle nav caret>
                 Load
               </DropdownToggle>
-              <DropdownMenu>
+              <DropdownMenu right>
                 {Object.keys(this.data).map((name) => {
                   return (
                     <DropdownItem
+                      style={{ fontSize: '2em' }}
                       key={name}
                       onClick={_ => this.setState({ fileData: this.data[name] })}>
                       {name}
                     </DropdownItem>
                   )
                 })}
-                <DropdownItem onClick={_ => this.setState({ fileData: null })}>Unload content</DropdownItem>
+                <DropdownItem
+                  style={{ fontSize: '2em' }}
+                  onClick={_ => this.setState({ fileData: null })}>Unload content</DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>
           </Nav>
@@ -59,50 +62,6 @@ export class FileManager extends React.Component {
           :
           null
         }
-        { /* <Row style={{ margin: 0 }}>
-          <div className="col-xl-3 col-lg-2"></div>
-          {
-            !this.state.fileData ?
-              <div className="col-xl-6 col-md-8" style={{ display: 'flex', flexDirection: 'column', height: '90vh' }}>
-                <div style={{ flexGrow: 1 }}></div>
-                <div style={{ flexGrow: 1 }}>
-                  <p>Select Input File</p>
-                  <input
-                    type="file"
-                    id="file"
-                    onChange={this.onFileChange.bind(this)}
-                  />
-                  <br />
-                  <br />
-                  <div style={{ flexGrow: 1, alignItems: 'flex-start' }}>
-                    {
-                      Object.keys(this.data)
-                        .map(x =>
-                          <div>
-                            <button
-                              key={x}
-                              onClick={_ => this.setState({ fileData: this.data[x] })}
-                              className="btn-sm btn btn-link">Load {x}</button>
-                          </div>
-                        )
-                    }
-                  </div>
-                </div>
-              </div>
-              :
-              null
-          }
-
-          {/* <div className="col-xl-3 col-lg-2">
-            {
-              this.state.fileData ?
-                <Icon
-                  className="times"
-                  onClick={() => { if (confirm('Do you want to remove the loaded flashcards?')) this.setState({ fileData: null }) }} />
-                : null
-            }
-          </div> */}
-        {/* </Row> */}
       </div>
     )
   }

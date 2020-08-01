@@ -31,6 +31,7 @@ export class Flashcard extends React.Component {
       width: '100%',
       transformStyle: 'preserve-3d',
       fontWeight: 'bold',
+      fontSize: '2em'
     }
     return (
       <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
@@ -44,7 +45,7 @@ export class Flashcard extends React.Component {
           <div
             style={cardStyle}
             onClick={this.props.onTurn.bind(this)}>
-            <div style={{ height: '100%', display: 'flex', flexDirection: 'column', backgroundColor: 'bisque' }}>
+            <div style={{ height: '100%', display: 'flex', flexDirection: 'column', }}>
               <div style={{ flexGrow: 1, textAlign: 'center', fontWeight: 'bold', height: 0 }}>
                 {/* {this.props.index + 1} / {this.props.total} */}
               </div>
@@ -64,7 +65,7 @@ export class Flashcard extends React.Component {
               display: 'flex',
               flexDirection: 'column',
               textAlign: 'center',
-              backgroundColor: 'khaki'
+              // backgroundColor: 'khaki'
             }}
             onClick={this.props.onTurn.bind(this)}>
             <div style={{
@@ -88,17 +89,19 @@ export class Flashcard extends React.Component {
                   flexDirection: 'column',
                   justifyContent: 'flex-start',
                   alignItems: 'center',
-                  height: '10vh'
+                  height: '10vh',
+                  fontSize: '1em'
                 }}>
-                  <button
+                  {/* <button
                     className="btn btn-link btn-sm"
-                    style={{ width: 200, margin: 20, padding: 0 }}
+                    style={{ margin: 20, padding: 0, fontSize: '.75em' }}
                     onClick={this.handleToggleExample.bind(this)}>
                     {this.state.showExample ? 'Hide' : 'Show'} Examples
-                    </button>
+                    </button> */}
                   {
                     examples.map((example, index) => <div style={{
-                      visibility: this.state.showExample ? 'visible' : 'hidden'
+                      // visibility: this.state.showExample ? 'visible' : 'hidden'
+                      fontSize: '1.5em'
                     }} key={index} className="font-italic text-muted">{example}</div>)
                   }
                 </div> :
@@ -111,8 +114,8 @@ export class Flashcard extends React.Component {
               // justifyContent: 'space-around',
               margin: 30
             }}>
-            <button onClick={e=>{this.props.onAnswer(false); e.preventDefault()}} className="btn btn-lg btn-danger" style={{width: '30vw'}}><Icon className="thumbs-down"/></button>
-            <button onClick={e=>{this.props.onAnswer(true); e.preventDefault(); e.stopPropagation()}} className="btn btn-lg btn-success" style={{width: '30vw'}}><Icon className="thumbs-up"/></button>
+              <button style={{ padding: 50, marginRight: 10 }} onClick={e => { this.props.onAnswer(false); e.preventDefault() }} className="btn btn-lg btn-danger"><Icon className="thumbs-down" /></button>
+              <button style={{ padding: 50, marginLeft: 10 }} onClick={e => { this.props.onAnswer(true); e.preventDefault(); e.stopPropagation() }} className="btn btn-lg btn-success"><Icon className="thumbs-up" /></button>
             </div>
           </div>
         </div>

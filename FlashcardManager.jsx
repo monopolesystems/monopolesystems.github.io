@@ -104,7 +104,7 @@ export class FlashcardManager extends React.Component {
   }
   componentDidMount() {
     this.fcm.current.focus()
-  } 
+  }
   render() {
     console.log(this.state);
     const currentFlashCard = this.state.flashcards[this.state.index]
@@ -113,7 +113,7 @@ export class FlashcardManager extends React.Component {
         onKeyDown={this.handleKeyDown.bind(this)}
         ref={this.fcm}
         tabIndex="0">
-        <nav class="navbar nav fixed-bottom navbar-light bg-light justify-content-left" style={{height: '5vh'}}>
+        <nav class="navbar nav fixed-bottom navbar-light bg-light justify-content-left" style={{ height: '5vh', fontSize: '2em' }}>
           <li class="nav-item" onClick={this.handleFirstClick.bind(this)}>
             <Icon className="angle-double-left" />
           </li>
@@ -121,15 +121,15 @@ export class FlashcardManager extends React.Component {
             <Icon className="caret-square-left" />
           </li>
           <div className="navbar-text font-weight-bold">
-            <span style={{ marginLeft: 5, marginRight: 5 }} className="text-muted">{this.state.flashcards.filter(({ answered }) => !answered).length}</span>
+            <span style={{ marginLeft: 5, marginRight: 5 }} className="text-muted">{this.state.index + 1}</span>
             /<span style={{ marginLeft: 5, marginRight: 5 }} className="text-primary">{this.state.flashcards.length}</span>
           </div>
-          <div className="navbar-brand">
-            <span style={{ marginLeft: 5, marginRight: 5 }} className="text-success">
-              {this.state.flashcards.filter(({ correct }) => correct === true).length} <span className="icon fas fa-thumbs-up" />
+          <div className="navbar-brand" style={{ fontSize: '1em' }}>
+            <span style={{ marginLeft: 5, marginRight: 5 }} className="text-success font-weight-bold">
+              {this.state.flashcards.filter(({ correct }) => correct === true).length}
             </span>
-            <span style={{ marginLeft: 5, marginRight: 5 }} className="text-danger">
-              {this.state.flashcards.filter(({ correct }) => correct === false).length} <span className="icon fas fa-thumbs-down" />
+            /<span style={{ marginLeft: 5, marginRight: 5 }} className="text-danger font-weight-bold">
+              {this.state.flashcards.filter(({ correct }) => correct === false).length}
             </span>
           </div>
           <li class="nav-item" onClick={this.handleNextClick.bind(this)}>
