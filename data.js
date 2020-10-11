@@ -1,4 +1,79 @@
 export default {
+  "Basic Vocabulary": `1|eins
+2|zwei
+3|drei
+4|vier
+5|fünf
+6|sechs
+7|sieben
+8|acht
+9|neun
+10|zehn
+11|elf
+12|zwölf
+13|dreizehn
+14|vierzehn
+15|fünfzehn
+16|sechzehn
+17|siebzehn
+18|achtzehn
+19|neunzehn
+20|zwanzig
+21|einundzwanzig
+22|zweiundzwanzig
+23|dreiundzwanzig
+24|vierundzwanzig
+25|fünfundzwanzig
+26|sechsundzwanzig
+27|siebenundzwanzig
+28|achtundzwanzig
+29|neunundzwanzig
+30|dreißig
+40|vierzig
+50|fünfzig
+60|sechzig
+70|siebzig
+80|achtzig
+90|neunzig
+100|hundert, einhundert
+200|zweihundert
+300|dreihundert
+400|vierhundert
+500|fünfhundert
+600|sechshundert
+700|siebenhundert
+800|achthundert
+900|neunhundert
+1000|tausend, eintausend
+10000|zehntausend
+Sunday|Sonntag
+Monday|Montag
+Tuesday|Dienstag
+Wednesday|Mittwoch
+Thursday|Donnerstag
+Friday|Freitag
+Saturday|Samstag
+January| Januar
+February| Februar
+March| März
+April|April
+May|Mai
+June|Juni
+July|Juli
+August|August
+September|September
+October|Oktober
+November|November
+December|Dezember
+Good morning|Guten Morgen
+Good day, Good afternoon| Guten Tag
+Good evening| Guten Abend
+Good night| Gute Nacht
+Today| Heute
+Tomorrow|Morgen
+Yesterday|Gestern
+Day after tomorrow|Übermorgen
+Day before yesterday|Vorgester`,
   "Verb Proposition":
     `Abhängen|von+D
 Achten|auf+A
