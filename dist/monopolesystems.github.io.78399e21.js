@@ -28309,7 +28309,7 @@ function Icon(_ref) {
     style: style,
     className: 'icon fas fa-' + className
   }, "style", {
-    fontSize: 50
+    fontSize: 30
   }));
 }
 },{"react":"node_modules/react/index.js"}],"Flashcard.jsx":[function(require,module,exports) {
@@ -30010,7 +30010,7 @@ var FlashcardManager = /*#__PURE__*/function (_React$Component) {
         class: "navbar nav fixed-bottom navbar-light bg-light justify-content-left",
         style: {
           height: '5vh',
-          fontSize: '2em'
+          fontSize: '1em'
         }
       }, /*#__PURE__*/_react.default.createElement("li", {
         class: "nav-item",
@@ -30037,7 +30037,7 @@ var FlashcardManager = /*#__PURE__*/function (_React$Component) {
         },
         className: "text-primary"
       }, this.state.flashcards.length)), /*#__PURE__*/_react.default.createElement("div", {
-        className: "navbar-brand",
+        className: "navbar-text",
         style: {
           fontSize: '1em'
         }
@@ -45631,7 +45631,7 @@ var FileManager = /*#__PURE__*/function (_React$Component) {
         expand: true,
         style: {
           height: '5vh',
-          fontSize: '3em'
+          fontSize: '2em'
         }
       }, /*#__PURE__*/_react.default.createElement(_reactstrap.NavbarBrand, {
         style: {
@@ -45721,7 +45721,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "40543" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "43203" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

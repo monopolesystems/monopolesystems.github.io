@@ -27,7 +27,7 @@ export class FileManager extends React.Component {
   render() {
     return (
       <div>
-        <Navbar color="dark" dark fixed expand style={{ height: '5vh', fontSize: '3em' }}>
+        <Navbar color="dark" dark fixed expand style={{ height: '5vh', fontSize: '2em' }}>
           <NavbarBrand style={{ fontSize: '1em' }}>Flashcards</NavbarBrand>
           <NavbarToggler />
           <Nav className="navbar-nav ml-auto" navbar>
