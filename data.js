@@ -74,7 +74,7 @@ Tomorrow|Morgen
 Yesterday|Gestern
 Day after tomorrow|Übermorgen
 Day before yesterday|Vorgester`,
-  "Verb Proposition":
+  "Verb Präposition":
     `Abhängen|von+D
 Achten|auf+A
 Ändern|an+D
